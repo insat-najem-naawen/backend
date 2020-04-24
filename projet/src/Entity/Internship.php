@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\InternshipRepository")
  */
-class Internship
+class Internship extends category
 {
     /**
      * @ORM\Id()
