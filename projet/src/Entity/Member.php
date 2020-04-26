@@ -28,15 +28,32 @@ class Member implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      */
+    /**
+     * @Assert\Type("string")
+     */
+    /**
+     * @Assert\NotBlank
+     */
+
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    /**
+     * @Assert\Type("string")
+     */
+    /**
+     * @Assert\NotBlank
+     */
+
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     */
+    /**
+     * @Assert\Type("string")
      */
     private $username;
 
@@ -46,6 +63,10 @@ class Member implements UserInterface
      *    message = "The email '{{ value }}' is not a valid email"
      * )
      */
+    /**
+     * @Assert\NotBlank
+     */
+
     private $email;
 
     /**

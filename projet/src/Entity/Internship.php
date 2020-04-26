@@ -19,10 +19,19 @@ class Internship extends category
     /**
      * @ORM\Column(type="string", length=255)
      */
+    /**
+ * @Assert\NotBlank
+ */
     private $duration;
 
     /**
      * @ORM\Column(type="string", length=255)
+     */
+    /**
+     * @Assert\NotBlank
+     */
+    /**
+     * @Assert\Type("string")
      */
     private $type;
 

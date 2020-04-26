@@ -19,6 +19,10 @@ class Training extends category
     /**
      * @ORM\Column(type="string", length=255)
      */
+    /**
+     * @Assert\NotBlank
+     */
+
     private $duration;
 
     public function getId(): ?int

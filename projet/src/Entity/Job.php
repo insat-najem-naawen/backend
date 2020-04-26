@@ -19,6 +19,12 @@ class Job extends category
     /**
      * @ORM\Column(type="string", length=255)
      */
+    /**
+     * @Assert\NotBlank
+     */
+    /**
+     * @Assert\Type("string")
+     */
     private $type;
 
     public function getId(): ?int

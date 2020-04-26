@@ -19,10 +19,20 @@ class Opportunity
     /**
      * @ORM\Column(type="string", length=255)
      */
+    /**
+     * @Assert\NotBlank
+     */
+
     private $domain;
 
     /**
      * @ORM\Column(type="string", length=255)
+     */
+    /**
+     * @Assert\NotBlank
+     */
+    /**
+     * @Assert\Url
      */
     private $link;
 
@@ -34,10 +44,17 @@ class Opportunity
     /**
      * @ORM\Column(type="string", length=255)
      */
+    /**
+     * @Assert\NotBlank
+     */
     private $title;
 
     /**
      * @ORM\Column(type="date")
+     */
+    /**
+     * @Assert\Date
+     * @var string A "Y-m-d" formatted value
      */
     private $publishedOn;
 
