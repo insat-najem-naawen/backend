@@ -21,17 +21,18 @@ class Comment
      */
     private $Content;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\member", inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $author;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\cv", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
     private $cv;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -50,17 +51,6 @@ class Comment
         return $this;
     }
 
-    public function getAuthor(): ?member
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?member $author): self
-    {
-        $this->author = $author;
-
-        return $this;
-    }
 
     public function getCv(): ?cv
     {
@@ -70,6 +60,18 @@ class Comment
     public function setCv(?cv $cv): self
     {
         $this->cv = $cv;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

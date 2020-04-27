@@ -23,16 +23,17 @@ class Cv
      */
     private $link;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Member", inversedBy="cv", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $owner;
+
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="cv", orphanRemoval=true)
      */
     private $comments;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="cv", cascade={"persist", "remove"})
+     */
+    private $user;
 
     public function __construct()
     {
@@ -56,17 +57,6 @@ class Cv
         return $this;
     }
 
-    public function getOwner(): ?Member
-    {
-        return $this->owner;
-    }
-
-    public function setOwner(Member $owner): self
-    {
-        $this->owner = $owner;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Comment[]
@@ -94,6 +84,24 @@ class Cv
             if ($comment->getCv() === $this) {
                 $comment->setCv(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newCv = null === $user ? null : $this;
+        if ($user->getCv() !== $newCv) {
+            $user->setCv($newCv);
         }
 
         return $this;

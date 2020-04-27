@@ -24,34 +24,26 @@ class Document
     /**
      * @ORM\Column(type="string", length=255)
      */
-    /**
-     * @Assert\Url
-     */
+
 
     private $link;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    /**
-     * @Assert\NotBlank
-     */
+
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    /**
-     * @Assert\NotBlank
-     */
+
     private $university;
 
     /**
      * @ORM\Column(type="integer")
      */
-    /**
-     * @Assert\NotBlank
-     */
+
     private $serial;
 
     public function getId(): ?int
