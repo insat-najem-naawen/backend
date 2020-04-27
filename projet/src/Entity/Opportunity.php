@@ -19,21 +19,14 @@ class Opportunity
     /**
      * @ORM\Column(type="string", length=255)
      */
-    /**
-     * @Assert\NotBlank
-     */
+
 
     private $domain;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    /**
-     * @Assert\NotBlank
-     */
-    /**
-     * @Assert\Url
-     */
+
     private $link;
 
     /**
@@ -44,18 +37,13 @@ class Opportunity
     /**
      * @ORM\Column(type="string", length=255)
      */
-    /**
-     * @Assert\NotBlank
-     */
+
     private $title;
 
     /**
      * @ORM\Column(type="date")
      */
-    /**
-     * @Assert\Date
-     * @var string A "Y-m-d" formatted value
-     */
+
     private $publishedOn;
 
     /**
@@ -63,17 +51,18 @@ class Opportunity
      */
     private $approved = false;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\member", inversedBy="opportunities")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $publishedBy;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="opportunity")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="opportunities")
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -152,17 +141,7 @@ class Opportunity
         return $this;
     }
 
-    public function getPublishedBy(): ?member
-    {
-        return $this->publishedBy;
-    }
 
-    public function setPublishedBy(?member $publishedBy): self
-    {
-        $this->publishedBy = $publishedBy;
-
-        return $this;
-    }
 
     public function getCategory(): ?Category
     {
@@ -172,6 +151,18 @@ class Opportunity
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
