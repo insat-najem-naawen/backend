@@ -26,9 +26,9 @@ $user->setPassword($hash);
 
 $em->persist($user);
 $em->flush();
-//return $this->json($user,201);
+return $this->json($user,201);
 
-dd($jsonrec);
+
     }
 
     /**
