@@ -38,42 +38,7 @@ return $this->json($user,200);
 
     }
 
-    /**
-     * @Route("/api/login_check"  , name = "security_login")
-     */
-    public function login(Request $request, SerializerInterface $serializer,UserRepository $userRepository ){
-        $jsonrec=$request->getContent();
-        $user=$serializer->deserialize($jsonrec,User::class ,'json');
-            $user=$userRepository->findOneBy(['email'=>$user->getEmail()]);
-        if(!$user){
-            throw $this->createNotFoundException();
-        }
 
-        $token=$this->get('lexik_jwt_authentication.encoder')
-            ->encode([
-                'email'=>$user->getEmail(),
-            'exp'=>time()+3600
-            ]);
-
-   return new JsonResponse(['token'=>$token]);
-
-
-
-
-
-
-/*$jsonrec=$request->getContent();
-$user=$serializer->deserialize($jsonrec,User::class ,'json');
-        $token = $this->getService('lexik_jwt_authentication.encoder')
-            ->encode(['email' =>$user.getEmail() ]);
-        $response = $this->client->post('/api/login_check', [
-            'body' => json_encode($user),
-            'headers' => [
-                'Authorization' => 'Bearer '.$token
-            ]
-        ]);
-        return $response;*/
-    }
     /**
      * @Route("/deconnexion", name="security_logout")
      */
