@@ -19,11 +19,6 @@ class Question
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="questions")
-     */
-    private $author;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $description;
@@ -38,6 +33,11 @@ class Question
      */
     private $answers;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $author;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
@@ -48,17 +48,6 @@ class Question
         return $this->id;
     }
 
-    public function getAuthor(): ?User
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?User $author): self
-    {
-        $this->author = $author;
-
-        return $this;
-    }
 
     public function getDescription(): ?string
     {
@@ -111,6 +100,18 @@ class Question
                 $answer->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?string $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

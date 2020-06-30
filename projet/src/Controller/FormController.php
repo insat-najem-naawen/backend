@@ -18,7 +18,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class FormController extends AbstractController
 {
     /**
-     * @Route("/api/form", name="form" , methods={"POST"} )
+     * @Route("/form", name="form" , methods={"POST"} )
      */
     public function formc(Request $request , SerializerInterface $serializer , EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
     {

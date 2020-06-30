@@ -16,10 +16,7 @@ class Answer
      */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="answers")
-     */
-    private $author;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -36,22 +33,16 @@ class Answer
      */
     private $question;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $author;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAuthor(): ?User
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?User $author): self
-    {
-        $this->author = $author;
-
-        return $this;
-    }
 
     public function getDescription(): ?string
     {
@@ -85,6 +76,18 @@ class Answer
     public function setQuestion(?Question $question): self
     {
         $this->question = $question;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?string $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }
